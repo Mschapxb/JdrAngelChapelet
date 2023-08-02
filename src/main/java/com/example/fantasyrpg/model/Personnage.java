@@ -63,6 +63,13 @@ public class Personnage {
         this.profilType = profilType;
     }
 
+    public int getTotalHitPoints() {
+        return totalHitPoints;
+    }
+
+    public void setTotalHitPoints(int totalHitPoints) {
+        this.totalHitPoints = totalHitPoints;
+    }
 
     public void calculateStatModifiers() {
         Caracteristique caracteristique = this.getCaracteristiques();
@@ -73,15 +80,16 @@ public class Personnage {
         caracteristique.setIntelligenceModifier(caracteristique.getIntelligence() / 2 - 5);
         caracteristique.setSagesseModifier(caracteristique.getSagesse() / 2 - 5);
         caracteristique.setCharismeModifier(caracteristique.getCharisme() / 2 - 5);
+
+        int ca = 10 + caracteristique.getDexteriteModifier();
+        int cac = 1 + caracteristique.getForceModifier();
+        int cad = 1 + caracteristique.getDexteriteModifier();
+
+        caracteristique.setCa(ca);
+        caracteristique.setCac(cac);
+        caracteristique.setCad(cad);
     }
 
-    public int getTotalHitPoints() {
-        return totalHitPoints;
-    }
-
-    public void setTotalHitPoints(int totalHitPoints) {
-        this.totalHitPoints = totalHitPoints;
-    }
 
 
     public void applyAllModifiers() {
@@ -99,6 +107,9 @@ public class Personnage {
                 ", caracteristiques=" + caracteristiques +
                 ", race=" + race +
                 ", profilType=" + profilType +
+                ", totalHitPoints=" + totalHitPoints +
                 '}';
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.fantasyrpg.model;
 
+
 import jakarta.persistence.Embeddable;
 
 @Embeddable
@@ -12,13 +13,16 @@ public class Caracteristique {
     private int sagesse = 10;
     private int charisme = 10;
 
-
     private int forceModifier;
     private int dexteriteModifier;
     private int constitutionModifier;
     private int intelligenceModifier;
     private int sagesseModifier;
     private int charismeModifier;
+
+    private int ca;
+    private int cac;
+    private int cad;
 
     public Caracteristique() {
     }
@@ -119,6 +123,30 @@ public class Caracteristique {
         this.charismeModifier = charismeModifier;
     }
 
+    public int getCa() {
+        return ca;
+    }
+
+    public void setCa(int ca) {
+        this.ca = ca;
+    }
+
+    public int getCac() {
+        return cac;
+    }
+
+    public void setCac(int cac) {
+        this.cac = cac;
+    }
+
+    public int getCad() {
+        return cad;
+    }
+
+    public void setCad(int cad) {
+        this.cad = cad;
+    }
+
     public int getTotalHitPoints(ProfilType profilType) {
         int hitPointsFromProfile = profilType.getHitPoints();
         int constitutionModifier = this.getConstitutionModifier();
@@ -140,6 +168,9 @@ public class Caracteristique {
                 ", intelligenceModifier=" + intelligenceModifier +
                 ", sagesseModifier=" + sagesseModifier +
                 ", charismeModifier=" + charismeModifier +
+                ", ca=" + ca +
+                ", cac=" + cac +
+                ", cad=" + cad +
                 '}';
     }
 }

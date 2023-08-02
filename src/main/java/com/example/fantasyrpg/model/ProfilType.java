@@ -6,7 +6,7 @@ public enum ProfilType {
     MAGICIEN("Magicien", 6),
     PRETRE("Prêtre", 8),
     RODEUR("Rôdeur", 8),
-    VOLEUR("Voleur", 8);
+    VOLEUR("Voleur", 6);
 
     private final String nom;
     private final int hitPoints;

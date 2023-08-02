@@ -50,6 +50,7 @@ public class PersonnageController {
         int totalHitPoints = personnage.getCaracteristiques().getTotalHitPoints(selectedProfilType);
         personnage.setTotalHitPoints(totalHitPoints);
 
+
         this.dernierPersonnage = personnage;
         return "redirect:/personnages/create";
     }
