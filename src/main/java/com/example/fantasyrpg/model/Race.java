@@ -2,63 +2,56 @@ package com.example.fantasyrpg.model;
 
 public enum Race {
 
-    HUMAIN("Humain", 0, 0, 0, 0, 0, 0),
-    ELFE("Elfe", -2, 2, 0, 0, 0, 0),
-    DEMI_ELFE("Demi-Elfe", 0, 0, 0, 0, 0, 0),
-    NAIN("Nain", 0, -2, 2, 0, 0, 0),
-    DEMI_ORQUE("Demi-Orque", 2, 0, 0, -2, 0, -2);
+    HUMAIN("Humain"),
+    ELFE("Elfe"),
+    DEMI_ELFE("Demi-Elfe"),
+    NAIN("Nain"),
+    DEMI_ORQUE("Demi-Orque");
 
     private final String nom;
-    private final int modificateurForce;
-    private final int modificateurDexterite;
-    private final int modificateurConstitution;
-    private final int modificateurIntelligence;
-    private final int modificateurSagesse;
-    private final int modificateurCharisme;
 
-    Race(String nom, int modificateurForce, int modificateurDexterite,
-         int modificateurConstitution, int modificateurIntelligence,
-         int modificateurSagesse, int modificateurCharisme) {
-
+    Race(String nom) {
         this.nom = nom;
-        this.modificateurForce = modificateurForce;
-        this.modificateurDexterite = modificateurDexterite;
-        this.modificateurConstitution = modificateurConstitution;
-        this.modificateurIntelligence = modificateurIntelligence;
-        this.modificateurSagesse = modificateurSagesse;
-        this.modificateurCharisme = modificateurCharisme;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public int getModificateurForce() {
-        return modificateurForce;
-    }
-
-    public int getModificateurDexterite() {
-        return modificateurDexterite;
-    }
-
-    public int getModificateurConstitution() {
-        return modificateurConstitution;
-    }
-
-    public int getModificateurIntelligence() {
-        return modificateurIntelligence;
-    }
-
-    public int getModificateurSagesse() {
-        return modificateurSagesse;
-    }
-
-    public int getModificateurCharisme() {
-        return modificateurCharisme;
-    }
-
     @Override
     public String toString() {
         return nom;
+    }
+
+
+    public void applyRaceModifiers(Personnage personnage) {
+        Caracteristique caracteristique = personnage.getCaracteristiques();
+        switch (this) {
+            case HUMAIN:
+
+                caracteristique.setForce(caracteristique.getForce() + 2);
+                caracteristique.setDexterite(caracteristique.getDexterite() + 2);
+                break;
+            case ELFE:
+
+                caracteristique.setIntelligence(caracteristique.getIntelligence() + 2);
+                caracteristique.setSagesse(caracteristique.getSagesse() + 2);
+                break;
+            case DEMI_ELFE:
+
+                caracteristique.setCharisme(caracteristique.getCharisme() + 1);
+                caracteristique.setSagesse(caracteristique.getSagesse() + 1);
+                break;
+            case NAIN:
+
+                caracteristique.setConstitution(caracteristique.getConstitution() + 2);
+                caracteristique.setForce(caracteristique.getForce() + 2);
+                break;
+            case DEMI_ORQUE:
+
+                caracteristique.setForce(caracteristique.getForce() + 2);
+                caracteristique.setConstitution(caracteristique.getConstitution() + 2);
+                break;
+        }
     }
 }

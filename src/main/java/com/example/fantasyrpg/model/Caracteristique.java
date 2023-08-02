@@ -1,15 +1,9 @@
 package com.example.fantasyrpg.model;
 
-import jakarta.persistence.Table;
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
 
-@Entity
-@Table(name = "caracteristiques")
+@Embeddable
 public class Caracteristique {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private int force = 10;
     private int dexterite = 10;
@@ -18,16 +12,15 @@ public class Caracteristique {
     private int sagesse = 10;
     private int charisme = 10;
 
-    private int pointsRestants = 15;
 
-    public Caracteristique() {}
+    private int forceModifier;
+    private int dexteriteModifier;
+    private int constitutionModifier;
+    private int intelligenceModifier;
+    private int sagesseModifier;
+    private int charismeModifier;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Caracteristique() {
     }
 
     public int getForce() {
@@ -78,50 +71,75 @@ public class Caracteristique {
         this.charisme = charisme;
     }
 
-    public int getPointsRestants() {
-        return pointsRestants;
+    public int getForceModifier() {
+        return forceModifier;
     }
 
-    public void setPointsRestants(int pointsRestants) {
-        this.pointsRestants = pointsRestants;
+    public void setForceModifier(int forceModifier) {
+        this.forceModifier = forceModifier;
     }
 
-    public boolean isValid() {
-        int totalPointsUsed =
-                (force - 10) +
-                        (dexterite - 10) +
-                        (constitution - 10) +
-                        (intelligence - 10) +
-                        (sagesse - 10) +
-                        (charisme - 10);
-        return totalPointsUsed <= 15;
+    public int getDexteriteModifier() {
+        return dexteriteModifier;
     }
 
-    public int getModificateur(int value) {
-        return (value / 2) - 5;
+    public void setDexteriteModifier(int dexteriteModifier) {
+        this.dexteriteModifier = dexteriteModifier;
     }
 
-    public int getModificateurForce() {
-        return getModificateur(force);
+    public int getConstitutionModifier() {
+        return constitutionModifier;
     }
 
-    public int getModificateurDexterite() {
-        return getModificateur(dexterite);
+    public void setConstitutionModifier(int constitutionModifier) {
+        this.constitutionModifier = constitutionModifier;
     }
 
-    // Si nécessaire, vous pouvez ajouter d'autres méthodes modificateurs pour chaque attribut
+    public int getIntelligenceModifier() {
+        return intelligenceModifier;
+    }
+
+    public void setIntelligenceModifier(int intelligenceModifier) {
+        this.intelligenceModifier = intelligenceModifier;
+    }
+
+    public int getSagesseModifier() {
+        return sagesseModifier;
+    }
+
+    public void setSagesseModifier(int sagesseModifier) {
+        this.sagesseModifier = sagesseModifier;
+    }
+
+    public int getCharismeModifier() {
+        return charismeModifier;
+    }
+
+    public void setCharismeModifier(int charismeModifier) {
+        this.charismeModifier = charismeModifier;
+    }
+
+    public int getTotalHitPoints(ProfilType profilType) {
+        int hitPointsFromProfile = profilType.getHitPoints();
+        int constitutionModifier = this.getConstitutionModifier();
+        return hitPointsFromProfile + constitutionModifier;
+    }
 
     @Override
     public String toString() {
         return "Caracteristique{" +
-                "id=" + id +
-                ", force=" + force +
+                "force=" + force +
                 ", dexterite=" + dexterite +
                 ", constitution=" + constitution +
                 ", intelligence=" + intelligence +
                 ", sagesse=" + sagesse +
                 ", charisme=" + charisme +
-                ", pointsRestants=" + pointsRestants +
+                ", forceModifier=" + forceModifier +
+                ", dexteriteModifier=" + dexteriteModifier +
+                ", constitutionModifier=" + constitutionModifier +
+                ", intelligenceModifier=" + intelligenceModifier +
+                ", sagesseModifier=" + sagesseModifier +
+                ", charismeModifier=" + charismeModifier +
                 '}';
     }
 }

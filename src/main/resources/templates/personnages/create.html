@@ -73,6 +73,9 @@
         </div>
 
     </form>
+
+    <!-- Affichage de l'erreur s'il y a lieu -->
+    <p th:if="${error}" style="color: red;">Erreur : <span th:text="${error}"></span></p>
 </div>
 
 <!-- Section pour afficher les détails du personnage -->
@@ -92,29 +95,35 @@
             <td th:text="${dernierPersonnage.profilType}"></td>
         </tr>
         <tr>
-            <th>Force</th>
-            <td th:text="${dernierPersonnage.caracteristiques.force}"></td>
+            <th>Force (mod)</th>
+            <td th:text="${dernierPersonnage.caracteristiques.force} + (${dernierPersonnage.caracteristiques.forceModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.forceModifier} + ')'"></td>
         </tr>
         <tr>
-            <th>Dextérité</th>
-            <td th:text="${dernierPersonnage.caracteristiques.dexterite}"></td>
+            <th>Dextérité (mod)</th>
+            <td th:text="${dernierPersonnage.caracteristiques.dexterite} + (${dernierPersonnage.caracteristiques.dexteriteModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.dexteriteModifier} + ')'"></td>
         </tr>
         <tr>
-            <th>Constitution</th>
-            <td th:text="${dernierPersonnage.caracteristiques.constitution}"></td>
+            <th>Constitution (mod)</th>
+            <td th:text="${dernierPersonnage.caracteristiques.constitution} + (${dernierPersonnage.caracteristiques.constitutionModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.constitutionModifier} + ')'"></td>
         </tr>
         <tr>
-            <th>Intelligence</th>
-            <td th:text="${dernierPersonnage.caracteristiques.intelligence}"></td>
+            <th>Intelligence (mod)</th>
+            <td th:text="${dernierPersonnage.caracteristiques.intelligence} + (${dernierPersonnage.caracteristiques.intelligenceModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.intelligenceModifier} + ')'"></td>
         </tr>
         <tr>
-            <th>Sagesse</th>
-            <td th:text="${dernierPersonnage.caracteristiques.sagesse}"></td>
+            <th>Sagesse (mod)</th>
+            <td th:text="${dernierPersonnage.caracteristiques.sagesse} + (${dernierPersonnage.caracteristiques.sagesseModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.sagesseModifier} + ')'"></td>
         </tr>
         <tr>
-            <th>Charisme</th>
-            <td th:text="${dernierPersonnage.caracteristiques.charisme}"></td>
+            <th>Charisme (mod)</th>
+            <td th:text="${dernierPersonnage.caracteristiques.charisme} + (${dernierPersonnage.caracteristiques.charismeModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.charismeModifier} + ')'"></td>
         </tr>
+
+        <tr>
+            <th>Pv </th>
+            <td th:text="${dernierPersonnage.totalHitPoints}"></td>
+        </tr>
+
     </table>
 </div>
 

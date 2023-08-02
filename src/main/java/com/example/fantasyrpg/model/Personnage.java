@@ -12,8 +12,7 @@ public class Personnage {
 
     private String nom;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "caracteristique_id")
+    @Embedded
     private Caracteristique caracteristiques;
 
     @Enumerated(EnumType.STRING)
@@ -22,9 +21,7 @@ public class Personnage {
     @Enumerated(EnumType.STRING)
     private ProfilType profilType;
 
-    private int niveau = 1;
-
-    public Personnage() {}
+    private int totalHitPoints;
 
     public Long getId() {
         return id;
@@ -66,40 +63,31 @@ public class Personnage {
         this.profilType = profilType;
     }
 
-    public int getNiveau() {
-        return niveau;
+
+    public void calculateStatModifiers() {
+        Caracteristique caracteristique = this.getCaracteristiques();
+
+        caracteristique.setForceModifier(caracteristique.getForce() / 2 - 5);
+        caracteristique.setDexteriteModifier(caracteristique.getDexterite() / 2 - 5);
+        caracteristique.setConstitutionModifier(caracteristique.getConstitution() / 2 - 5);
+        caracteristique.setIntelligenceModifier(caracteristique.getIntelligence() / 2 - 5);
+        caracteristique.setSagesseModifier(caracteristique.getSagesse() / 2 - 5);
+        caracteristique.setCharismeModifier(caracteristique.getCharisme() / 2 - 5);
     }
 
-    public void setNiveau(int niveau) {
-        this.niveau = niveau;
+    public int getTotalHitPoints() {
+        return totalHitPoints;
     }
 
-    public int getDefense() {
-        return 10 + this.caracteristiques.getModificateurDexterite();
+    public void setTotalHitPoints(int totalHitPoints) {
+        this.totalHitPoints = totalHitPoints;
     }
 
-    public int getAttaqueMelee() {
-        return this.caracteristiques.getModificateurForce() + 1;
-    }
 
-    public int getAttaqueDistance() {
-        return this.caracteristiques.getModificateurDexterite() + 1;
-    }
-
-    public int getPointsDeVie() {
-        switch (profilType) {
-            case GUERRIER:
-                return 10;
-            case MAGICIEN:
-                return 4;
-            case PRETRE:
-                return 8;
-            case RODEUR:
-                return 8;
-            case VOLEUR:
-                return 6;
-            default:
-                return 0;
+    public void applyAllModifiers() {
+        calculateStatModifiers();
+        if (race != null) {
+            race.applyRaceModifiers(this);
         }
     }
 
@@ -111,10 +99,6 @@ public class Personnage {
                 ", caracteristiques=" + caracteristiques +
                 ", race=" + race +
                 ", profilType=" + profilType +
-                ", niveau=" + niveau +
                 '}';
-    }
-
-    public void setCaracteristique(Caracteristique caracteristique) {
     }
 }

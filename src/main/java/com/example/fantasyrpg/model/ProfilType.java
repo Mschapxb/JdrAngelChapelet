@@ -2,32 +2,26 @@ package com.example.fantasyrpg.model;
 
 public enum ProfilType {
 
-    GUERRIER("Guerrier", 10, false),
-    MAGICIEN("Magicien", 4, true),
-    PRETRE("Prêtre", 8, true),
-    RODEUR("Rôdeur", 8, false),
-    VOLEUR("Voleur", 6, false);
+    GUERRIER("Guerrier", 10),
+    MAGICIEN("Magicien", 6),
+    PRETRE("Prêtre", 8),
+    RODEUR("Rôdeur", 8),
+    VOLEUR("Voleur", 8);
 
     private final String nom;
-    private final int pointsVieParNiveau;
-    private final boolean utiliseMagie;
+    private final int hitPoints;
 
-    ProfilType(String nom, int pointsVieParNiveau, boolean utiliseMagie) {
+    ProfilType(String nom, int hitPoints) {
         this.nom = nom;
-        this.pointsVieParNiveau = pointsVieParNiveau;
-        this.utiliseMagie = utiliseMagie;
+        this.hitPoints = hitPoints;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public int getPointsVieParNiveau() {
-        return pointsVieParNiveau;
-    }
-
-    public boolean utiliseMagie() {
-        return utiliseMagie;
+    public int getHitPoints() {
+        return hitPoints;
     }
 
     @Override
