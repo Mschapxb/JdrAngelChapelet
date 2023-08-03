@@ -1,8 +1,10 @@
-package com.example.fantasyrpg.service;
+package com.example.Jdr.service;
 
-import com.example.fantasyrpg.model.Personnage;
-import com.example.fantasyrpg.repository.PersonnageRepository;
+import com.example.Jdr.model.Personnage;
+import com.example.Jdr.repository.PersonnageRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PersonnageServiceImpl implements PersonnageService {
@@ -16,5 +18,15 @@ public class PersonnageServiceImpl implements PersonnageService {
     @Override
     public Personnage savePersonnage(Personnage personnage) {
         return personnageRepository.save(personnage);
+    }
+
+    @Override
+    public List<Personnage> getAllPersonnages() {
+        return personnageRepository.findAll();
+    }
+
+    @Override
+    public void deletePersonnage(Long id) {
+        personnageRepository.deleteById(id);
     }
 }

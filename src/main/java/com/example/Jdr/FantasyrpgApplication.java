@@ -1,4 +1,4 @@
-package com.example.fantasyrpg;
+package com.example.Jdr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,0 +1,22 @@
+CREATE TABLE personnages (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    ca INT,
+    cac INT,
+    cad INT,
+    charisme INT,
+    charisme_modifier INT,
+    constitution INT,
+    constitution_modifier INT,
+    dexterite INT,
+    dexterite_modifier INT,
+    force_stat INT,
+    force_modifier INT,
+    intelligence INT,
+    intelligence_modifier INT,
+    sagesse INT,
+    sagesse_modifier INT,
+    nom VARCHAR(255),
+    profil_type VARCHAR(255),
+    race VARCHAR(255),
+    total_hit_points INT
+);

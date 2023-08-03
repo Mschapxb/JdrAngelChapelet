@@ -1,4 +1,4 @@
-package com.example.fantasyrpg.model;
+package com.example.Jdr.model;
 
 import jakarta.persistence.*;
 

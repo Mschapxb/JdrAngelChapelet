@@ -1,16 +1,15 @@
-package com.example.fantasyrpg.controller;
+package com.example.Jdr.controller;
 
-import com.example.fantasyrpg.model.Personnage;
-import com.example.fantasyrpg.model.Caracteristique;
-import com.example.fantasyrpg.model.ProfilType;
-import com.example.fantasyrpg.model.Race;
-import com.example.fantasyrpg.service.PersonnageService;
+import com.example.Jdr.model.Personnage;
+import com.example.Jdr.model.Caracteristique;
+import com.example.Jdr.model.ProfilType;
+import com.example.Jdr.model.Race;
+import com.example.Jdr.service.PersonnageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/personnages")
@@ -23,12 +22,28 @@ public class PersonnageController {
     public PersonnageController(PersonnageService personnageService) {
         this.personnageService = personnageService;
     }
+    @GetMapping("/")
+    public String accueil(Model model) {
+        return "accueil";
+    }
 
     @GetMapping("/create")
     public String createPersonnageForm(Model model) {
         model.addAttribute("personnage", new Personnage());
         return "personnages/create";
     }
+    @GetMapping("/list")
+    public String listPersonnages(Model model) {
+        List<Personnage> personnages = personnageService.getAllPersonnages();
+        model.addAttribute("personnages", personnages);
+        return "personnages/list";
+    }
+    @GetMapping("/delete/{id}")
+    public String deletePersonnage(@PathVariable Long id) {
+        personnageService.deletePersonnage(id);
+        return "redirect:/personnages/list";
+    }
+
 
     @PostMapping("/create")
     public String createPersonnage(@ModelAttribute Personnage personnage, Model model) {
@@ -53,7 +68,7 @@ public class PersonnageController {
         int totalHitPoints = personnage.getCaracteristiques().getTotalHitPoints(selectedProfilType);
         personnage.setTotalHitPoints(totalHitPoints);
 
-        // Enregistrer le personnage dans la base de données
+
         Personnage savedPersonnage = personnageService.savePersonnage(personnage);
 
         this.dernierPersonnage = savedPersonnage;

@@ -1,6 +1,6 @@
-package com.example.fantasyrpg.repository;
+package com.example.Jdr.repository;
 
-import com.example.fantasyrpg.model.Personnage;
+import com.example.Jdr.model.Personnage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
