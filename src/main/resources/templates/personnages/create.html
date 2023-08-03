@@ -10,20 +10,20 @@
 
 <div class="container">
     <div class="mb-3">
-        <a href="/personnages/" class="btn btn-secondary">Retour à l'accueil</a>
+        <a class="btn btn-secondary" href="/personnages/">Retour à l'accueil</a>
     </div>
     <h2 class="mt-4">Création de personnage</h2>
 
-    <form action="#" th:action="@{/personnages/create}" th:object="${personnage}" method="post">
+    <form action="#" method="post" th:action="@{/personnages/create}" th:object="${personnage}">
 
         <div class="mb-3">
-            <label for="name" class="form-label">Nom:</label>
-            <input type="text" th:field="*{nom}" id="name" class="form-control" required>
+            <label class="form-label" for="name">Nom:</label>
+            <input class="form-control" id="name" required th:field="*{nom}" type="text">
         </div>
 
         <div class="mb-3">
-            <label for="race" class="form-label">Race:</label>
-            <select th:field="*{race}" id="race" class="form-select">
+            <label class="form-label" for="race">Race:</label>
+            <select class="form-select" id="race" th:field="*{race}">
                 <option value="HUMAIN">Humain</option>
                 <option value="ELFE">Elfe</option>
                 <option value="DEMI_ELFE">Demi-Elfe</option>
@@ -33,8 +33,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="profilType" class="form-label">Type de Profil:</label>
-            <select th:field="*{profilType}" id="profilType" class="form-select">
+            <label class="form-label" for="profilType">Type de Profil:</label>
+            <select class="form-select" id="profilType" th:field="*{profilType}">
                 <option value="GUERRIER">Guerrier</option>
                 <option value="MAGICIEN">Magicien</option>
                 <option value="PRETRE">Prêtre</option>
@@ -46,43 +46,49 @@
         <h3 class="mb-3">Répartition des points de caractéristiques (15 points à répartir)</h3>
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label for="force" class="form-label">Force:</label>
-                <input type="number" th:field="*{caracteristiques.force_stat}" id="force" class="form-control" min="3" max="20">
+                <label class="form-label" for="force">Force:</label>
+                <input class="form-control" id="force" max="20" min="3" th:field="*{caracteristiques.force_stat}"
+                       type="number">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="dexterite" class="form-label">Dextérité:</label>
-                <input type="number" th:field="*{caracteristiques.dexterite}" id="dexterite" class="form-control" min="3" max="20">
+                <label class="form-label" for="dexterite">Dextérité:</label>
+                <input class="form-control" id="dexterite" max="20" min="3"
+                       th:field="*{caracteristiques.dexterite}" type="number">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="constitution" class="form-label">Constitution:</label>
-                <input type="number" th:field="*{caracteristiques.constitution}" id="constitution" class="form-control" min="3" max="20">
+                <label class="form-label" for="constitution">Constitution:</label>
+                <input class="form-control" id="constitution" max="20" min="3"
+                       th:field="*{caracteristiques.constitution}" type="number">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="intelligence" class="form-label">Intelligence:</label>
-                <input type="number" th:field="*{caracteristiques.intelligence}" id="intelligence" class="form-control" min="3" max="20">
+                <label class="form-label" for="intelligence">Intelligence:</label>
+                <input class="form-control" id="intelligence" max="20" min="3"
+                       th:field="*{caracteristiques.intelligence}" type="number">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="sagesse" class="form-label">Sagesse:</label>
-                <input type="number" th:field="*{caracteristiques.sagesse}" id="sagesse" class="form-control" min="3" max="20">
+                <label class="form-label" for="sagesse">Sagesse:</label>
+                <input class="form-control" id="sagesse" max="20" min="3" th:field="*{caracteristiques.sagesse}"
+                       type="number">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="charisme" class="form-label">Charisme:</label>
-                <input type="number" th:field="*{caracteristiques.charisme}" id="charisme" class="form-control" min="3" max="20">
+                <label class="form-label" for="charisme">Charisme:</label>
+                <input class="form-control" id="charisme" max="20" min="3" th:field="*{caracteristiques.charisme}"
+                       type="number">
             </div>
         </div>
 
         <div class="mb-3">
-            <input type="submit" value="Créer" class="btn btn-primary">
+            <input class="btn btn-primary" type="submit" value="Créer">
         </div>
 
     </form>
 
-    <p th:if="${error}" class="text-danger">Erreur : <span th:text="${error}"></span></p>
+    <p class="text-danger" th:if="${error}">Erreur : <span th:text="${error}"></span></p>
 </div>
 
 <div class="container mt-4">
     <h2>Informations du dernier personnage créé :</h2>
-    <table th:if="${dernierPersonnage != null}" class="table">
+    <table class="table" th:if="${dernierPersonnage != null}">
         <tr>
             <th>Nom</th>
             <td th:text="${dernierPersonnage.nom}"></td>

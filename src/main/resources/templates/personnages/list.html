@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Liste des Personnages</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Liste des Personnages</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container mt-5">
-  <div class="mb-3">
-    <a href="/personnages/" class="btn btn-secondary">Retour à l'accueil</a>
-  </div>
-  <h1>Liste des Personnages</h1>
-  <table class="table table-dark mt-3">
-    <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Race</th>
-      <th>Profil</th>
+    <div class="mb-3">
+        <a class="btn btn-secondary" href="/personnages/">Retour à l'accueil</a>
+    </div>
+    <h1>Liste des Personnages</h1>
+    <table class="table table-dark mt-3">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Race</th>
+            <th>Profil</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="personnage : ${personnages}">
-      <td th:text="${personnage.nom}"></td>
-      <td th:text="${personnage.race.nom}"></td>
-      <td th:text="${personnage.profilType.nom}"></td>
-      <td>
-        <a th:href="@{/personnages/delete/{id}(id=${personnage.id})}" class="btn btn-danger">Supprimer</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="personnage : ${personnages}">
+            <td th:text="${personnage.nom}"></td>
+            <td th:text="${personnage.race.nom}"></td>
+            <td th:text="${personnage.profilType.nom}"></td>
+            <td>
+                <a class="btn btn-danger" th:href="@{/personnages/delete/{id}(id=${personnage.id})}">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
