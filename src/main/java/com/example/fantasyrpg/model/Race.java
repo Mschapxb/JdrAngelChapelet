@@ -29,7 +29,7 @@ public enum Race {
         switch (this) {
             case HUMAIN:
 
-                caracteristique.setForce(caracteristique.getForce() + 2);
+                caracteristique.setForce_stat(caracteristique.getForce_stat() + 2);
                 caracteristique.setDexterite(caracteristique.getDexterite() + 2);
                 break;
             case ELFE:
@@ -45,11 +45,11 @@ public enum Race {
             case NAIN:
 
                 caracteristique.setConstitution(caracteristique.getConstitution() + 2);
-                caracteristique.setForce(caracteristique.getForce() + 2);
+                caracteristique.setForce_stat(caracteristique.getForce_stat() + 2);
                 break;
             case DEMI_ORQUE:
 
-                caracteristique.setForce(caracteristique.getForce() + 2);
+                caracteristique.setForce_stat(caracteristique.getForce_stat() + 2);
                 caracteristique.setConstitution(caracteristique.getConstitution() + 2);
                 break;
         }

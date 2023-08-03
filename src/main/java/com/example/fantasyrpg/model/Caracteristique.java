@@ -1,12 +1,11 @@
 package com.example.fantasyrpg.model;
 
-
 import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Caracteristique {
 
-    private int force = 10;
+    private int force_stat = 10;
     private int dexterite = 10;
     private int constitution = 10;
     private int intelligence = 10;
@@ -27,12 +26,12 @@ public class Caracteristique {
     public Caracteristique() {
     }
 
-    public int getForce() {
-        return force;
+    public int getForce_stat() {
+        return force_stat;
     }
 
-    public void setForce(int force) {
-        this.force = force;
+    public void setForce_stat(int force) {
+        this.force_stat = force;
     }
 
     public int getDexterite() {
@@ -156,7 +155,7 @@ public class Caracteristique {
     @Override
     public String toString() {
         return "Caracteristique{" +
-                "force=" + force +
+                "force=" + force_stat +
                 ", dexterite=" + dexterite +
                 ", constitution=" + constitution +
                 ", intelligence=" + intelligence +

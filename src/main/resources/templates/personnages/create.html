@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="force" class="form-label">Force:</label>
-                <input type="number" th:field="*{caracteristiques.force}" id="force" class="form-control" min="3" max="20">
+                <input type="number" th:field="*{caracteristiques.force_stat}" id="force" class="form-control" min="3" max="20">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="dexterite" class="form-label">Dextérité:</label>
@@ -94,7 +94,7 @@
         </tr>
         <tr>
             <th>Force (mod)</th>
-            <td th:text="${dernierPersonnage.caracteristiques.force} + (${dernierPersonnage.caracteristiques.forceModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.forceModifier} + ')'"></td>
+            <td th:text="${dernierPersonnage.caracteristiques.force_stat} + (${dernierPersonnage.caracteristiques.forceModifier} >= 0 ? ' (+' : ' (') + ${dernierPersonnage.caracteristiques.forceModifier} + ')'"></td>
         </tr>
         <tr>
             <th>Dextérité (mod)</th>

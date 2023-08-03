@@ -4,6 +4,7 @@ import com.example.fantasyrpg.model.Personnage;
 import com.example.fantasyrpg.model.Caracteristique;
 import com.example.fantasyrpg.model.ProfilType;
 import com.example.fantasyrpg.model.Race;
+import com.example.fantasyrpg.service.PersonnageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/personnages")
 public class PersonnageController {
 
+    private final PersonnageService personnageService;
+
     private Personnage dernierPersonnage;
+
+    public PersonnageController(PersonnageService personnageService) {
+        this.personnageService = personnageService;
+    }
 
     @GetMapping("/create")
     public String createPersonnageForm(Model model) {
@@ -28,7 +35,7 @@ public class PersonnageController {
         Caracteristique caracteristique = personnage.getCaracteristiques();
         if (caracteristique != null) {
 
-            int totalPoints = caracteristique.getForce() + caracteristique.getDexterite() +
+            int totalPoints = caracteristique.getForce_stat() + caracteristique.getDexterite() +
                     caracteristique.getConstitution() + caracteristique.getIntelligence() +
                     caracteristique.getSagesse() + caracteristique.getCharisme();
             if (totalPoints != 75) {
@@ -37,12 +44,8 @@ public class PersonnageController {
             }
         }
 
-
         Race selectedRace = personnage.getRace();
-
-
         selectedRace.applyRaceModifiers(personnage);
-
 
         personnage.calculateStatModifiers();
 
@@ -50,8 +53,10 @@ public class PersonnageController {
         int totalHitPoints = personnage.getCaracteristiques().getTotalHitPoints(selectedProfilType);
         personnage.setTotalHitPoints(totalHitPoints);
 
+        // Enregistrer le personnage dans la base de données
+        Personnage savedPersonnage = personnageService.savePersonnage(personnage);
 
-        this.dernierPersonnage = personnage;
+        this.dernierPersonnage = savedPersonnage;
         return "redirect:/personnages/create";
     }
 
